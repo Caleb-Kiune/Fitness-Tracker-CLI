@@ -1,5 +1,5 @@
 # lib/helpers.py
-from models import Activity
+from models import User, Activity
 from sqlalchemy.orm import sessionmaker
 from datetime import datetime
 
@@ -105,5 +105,15 @@ def view_activities(session):
         activity_list.append(activity_info)
         print(f"ID: {activity.id}, Type: {activity.type}, Duration: {activity.duration}, Date: {activity.date}, Details: {activity.details}")
     return activity_list
+
+
+def add_user(session):
+    name = input("Enter user name: ").strip()
+    email = input("Enter user email: ").strip()
+    new_user = User(name=name, email=email)
+    session.add(new_user)
+    session.commit()
+    print("User added successfully.")
+
 
 
