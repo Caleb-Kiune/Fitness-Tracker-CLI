@@ -1,3 +1,4 @@
+# lib/helpers.py
 from models import Activity
 from sqlalchemy.orm import sessionmaker
 from datetime import datetime
@@ -37,8 +38,10 @@ def update_activity(session):
     activity_id = int(input("Enter the ID of the activity to update: "))
     activity = session.query(Activity).get(activity_id)
     if activity:
-        activity_type = input(f"Enter new activity type (current: {activity.type}): ").strip() or activity.type
-        if not activity_type:
+        new_type = input(f"Enter new activity type (current: {activity.type}): ").strip()
+        if new_type:
+            activity.type = new_type
+        else:
             print("Error: Activity type cannot be empty.")
             return
         
@@ -62,12 +65,13 @@ def update_activity(session):
                 print("Error: Date must be in DD-MM-YYYY format.")
                 return
         
-        activity.details = input(f"Enter new details (current: {activity.details}): ").strip() or activity.details
+        new_details = input(f"Enter new details (current: {activity.details}): ").strip()
+        activity.details = new_details if new_details else activity.details
+        
         session.commit()
         print("Activity updated successfully.")
     else:
         print("Activity not found.")
-
 
 def delete_activity(session):
     activity_id = int(input("Enter the ID of the activity to delete: "))
