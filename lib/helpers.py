@@ -115,5 +115,23 @@ def add_user(session):
     session.commit()
     print("User added successfully.")
 
+def view_users(session):
+    users = session.query(User).all()
+    for user in users:
+        print(f"ID: {user.id}, Name: {user.name}, Email: {user.email}")
+    return users
+
+def delete_user(session):
+    user_id = int(input("Enter the ID of the user to delete: "))
+    user = session.query(User).get(user_id)
+    if user:
+        session.delete(user)
+        session.commit()
+        print("User deleted successfully.")
+    else:
+        print("User not found.")
+
+
+
 
 
