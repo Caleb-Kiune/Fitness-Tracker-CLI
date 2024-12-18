@@ -144,6 +144,26 @@ def add_goal(session):
     print("Goal added successfully.")
 
 
+def view_goals(session):
+    goals = session.query(Goal).all()
+    for goal in goals:
+        print(f"ID: {goal.id}, User ID: {goal.user_id}, Target Type: {goal.target_type}, Target Value: {goal.target_value}, Deadline: {goal.deadline}")
+    return goals
+
+
+def delete_goal(session):
+    goal_id = int(input("Enter the ID of the goal to delete: "))
+    goal = session.query(Goal).get(goal_id)
+    if goal:
+        session.delete(goal)
+        session.commit()
+        print("Goal deleted successfully.")
+    else:
+        print("Goal not found.")
+
+
+
+
 
 
 
