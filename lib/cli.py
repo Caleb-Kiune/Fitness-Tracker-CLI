@@ -1,5 +1,4 @@
 # lib/cli.py
-
 from helpers import add_activity, update_activity, delete_activity, view_activities
 from sqlalchemy.orm import sessionmaker
 from models import Base, Activity
