@@ -1,13 +1,15 @@
 # lib/helpers.py
-from sqlalchemy.orm import sessionmaker
 from models import Activity
+from sqlalchemy.orm import sessionmaker
+from datetime import datetime
 
 Session = sessionmaker()
 
 def add_activity(session):
     activity_type = input("Enter activity type: ")
     duration = float(input("Enter duration (minutes): "))
-    date = input("Enter date (YYYY-MM-DD): ")
+    date_str = input("Enter date (YYYY-MM-DD): ")
+    date = datetime.strptime(date_str, "%Y-%m-%d")
     details = input("Enter any additional details: ")
     
     new_activity = Activity(type=activity_type, duration=duration, date=date, details=details)
@@ -21,7 +23,8 @@ def update_activity(session):
     if activity:
         activity.type = input(f"Enter new activity type (current: {activity.type}): ") or activity.type
         activity.duration = float(input(f"Enter new duration (current: {activity.duration}): ") or activity.duration)
-        activity.date = input(f"Enter new date (current: {activity.date}): ") or activity.date
+        date_str = input(f"Enter new date (current: {activity.date}): ")
+        activity.date = datetime.strptime(date_str, "%Y-%m-%d") if date_str else activity.date
         activity.details = input(f"Enter new details (current: {activity.details}): ") or activity.details
         session.commit()
         print("Activity updated successfully.")
