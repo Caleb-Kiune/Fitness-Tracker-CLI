@@ -1,5 +1,5 @@
 # lib/helpers.py
-from models import User, Activity
+from models import User, Goal, Activity
 from sqlalchemy.orm import sessionmaker
 from datetime import datetime
 
@@ -130,6 +130,19 @@ def delete_user(session):
         print("User deleted successfully.")
     else:
         print("User not found.")
+
+
+def add_goal(session):
+    user_id = int(input("Enter user ID: ").strip())
+    target_type = input("Enter target type (e.g., distance, time): ").strip()
+    target_value = float(input("Enter target value: "))
+    deadline_str = input("Enter deadline (DD-MM-YYYY): ").strip()
+    deadline = datetime.strptime(deadline_str, "%d-%m-%Y")
+    new_goal = Goal(user_id=user_id, target_type=target_type, target_value=target_value, deadline=deadline)
+    session.add(new_goal)
+    session.commit()
+    print("Goal added successfully.")
+
 
 
 

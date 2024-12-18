@@ -1,7 +1,7 @@
 # lib/cli.py
-from helpers import add_activity, update_activity, delete_activity, view_activities, add_user, view_users, delete_user
+from helpers import add_activity, update_activity, delete_activity, view_activities, add_user, view_users, delete_user, add_goal
 from sqlalchemy.orm import sessionmaker
-from models import Base, Activity, User
+from models import Base, Activity, User, Goal
 from sqlalchemy import create_engine
 
 def main():
@@ -18,7 +18,8 @@ def main():
         print("5. Add New User")
         print("6. View All Users")
         print("7. Delete a User")
-        print("8. Exit")
+        print("8. Add New Goal")
+        print("9. Exit")
         
         choice = input("> ")
         if choice == "1":
@@ -36,6 +37,8 @@ def main():
         elif choice == "7":
             delete_user(session)
         elif choice == "8":
+            add_goal(session)
+        elif choice == "9":
             break
         else:
             print("Invalid choice. Please try again.")
