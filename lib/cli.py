@@ -11,13 +11,13 @@ def main():
     session = Session()
 
     while True:
-        print("1. Add New Activity")
-        print("2. Update Existing Activity")
-        print("3. Delete an Activity")
-        print("4. View All Activities")
-        print("5. Add New User")
-        print("6. View All Users")
-        print("7. Delete a User")
+        print("1. Add New User")
+        print("2. View All Users")
+        print("3. Delete a User")
+        print("4. Add New Activity")
+        print("5. Update Existing Activity")
+        print("6. Delete an Activity")
+        print("7. View All Activities")
         print("8. Add New Goal")
         print("9. View All Goals")
         print("10. Delete a Goal")
@@ -25,19 +25,19 @@ def main():
         
         choice = input("> ")
         if choice == "1":
-            add_activity(session)
-        elif choice == "2":
-            update_activity(session)
-        elif choice == "3":
-            delete_activity(session)
-        elif choice == "4":
-            view_activities(session)
-        elif choice == "5":
             add_user(session)
-        elif choice == "6":
+        elif choice == "2":
             view_users(session)
-        elif choice == "7":
+        elif choice == "3":
             delete_user(session)
+        elif choice == "4":
+            add_activity(session)
+        elif choice == "5":
+            update_activity(session)
+        elif choice == "6":
+            delete_activity(session)
+        elif choice == "7":
+            view_activities(session)
         elif choice == "8":
             add_goal(session)
         elif choice == "9":
