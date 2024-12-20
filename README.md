@@ -2,6 +2,10 @@
 
 A command-line interface (CLI) application to manage fitness activities, users, and goals. The application allows users to add, update, delete, and view activities, as well as manage user profiles and set fitness goals.
 
+## Author
+
+Caleb Kiune
+
 ## Table of Contents
 
 - [Installation](#installation)

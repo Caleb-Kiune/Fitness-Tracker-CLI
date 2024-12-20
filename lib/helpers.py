@@ -5,14 +5,8 @@ from datetime import datetime
 
 Session = sessionmaker()
 
-# lib/helpers.py
-from models import Activity
-from sqlalchemy.orm import sessionmaker
-from datetime import datetime
-
-Session = sessionmaker()
-
 def add_activity(session):
+
     # dictionary used to store activity details
     activity_data = {
         'type': input("Enter activity type: ").strip(),
@@ -51,6 +45,7 @@ def update_activity(session):
     activity_id = int(input("Enter the ID of the activity to update: "))
     activity = session.query(Activity).get(activity_id)
     if activity:
+
         # tuple used to store activity details
         current_details = (activity.type, activity.duration, activity.date, activity.details)
         
@@ -91,8 +86,11 @@ def delete_activity(session):
     else:
         print("Activity not found.")
 
+
 def view_activities(session):
     activities = session.query(Activity).all()
+
+    #use of list to collect activity information
     activity_list = []
     for activity in activities:
         activity_info = {
